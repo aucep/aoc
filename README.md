@@ -1,3 +1,3 @@
-# aoc-2022
+# aoc-2021
 puzzle inputs go in `inputs/day{n}`  
-to the finish this time!!
+waiting for the others
