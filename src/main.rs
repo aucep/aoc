@@ -2,6 +2,7 @@ use anyhow::{bail, Context, Result};
 use std::{env, fs};
 
 mod day1;
+mod day2;
 
 fn main() -> Result<()> {
     let mut args = env::args().skip(1).peekable();
@@ -15,6 +16,7 @@ fn main() -> Result<()> {
 
         let solution = match day {
             1 => day1::solution,
+            2 => day2::solution,
             0 | 32.. => bail!("{day} outside of range 1..=31"),
             _ => bail!("day{day} not implemented"),
         };
