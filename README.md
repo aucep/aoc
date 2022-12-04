@@ -1,3 +1,1 @@
-# aoc-2022
-puzzle inputs go in `inputs/day{n}`  
-to the finish this time!!
+it's in nix. im sorry

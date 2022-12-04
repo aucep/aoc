@@ -1,0 +1,4 @@
+run = "nix-instantiate --eval --strict day1.nix"
+
+[nix]
+channel = "stable-21_11"
