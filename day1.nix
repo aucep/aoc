@@ -1,17 +1,16 @@
 with builtins;
 with (import <nixpkgs> {}).lib;
 let
-	sum = foldl (a: b: a + b) 0;
-	do = flip pipe; # not supposed to do this
+	sum = foldl add 0;
 	elves = pipe (readFile ./inputs/day1) [
 		(removeSuffix "\n")
 		(splitString "\n\n")
-		(map (do [
+		(map (flip pipe [
 			(splitString "\n")
 			(map toInt)
 			sum
 		]))
-		(sort (a: b: a > b))
+		(sort (flip lessThan))
 	];
 	part1 = head elves;
 	part2 = sum (take 3 elves);
