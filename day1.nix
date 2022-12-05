@@ -1,8 +1,7 @@
 with (import <nixpkgs> {}).lib;
 let
 	sum = foldl add 0;
-	elves = pipe (readFile ./inputs/day1) [
-		(removeSuffix "\n")
+	elves = pipe (fileContents ./inputs/day1) [
 		(splitString "\n\n")
 		(map (flip pipe [
 			(splitString "\n")
