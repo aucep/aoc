@@ -1,7 +1,12 @@
 with (import <nixpkgs> {}).lib;
 let
 	sum = foldl add 0;
-	find = m: s: foldl (flip getAttr) m (splitString " " s);
+	# find = m: s: foldl (flip getAttr) m (splitString " " s);
+	find = flip (
+		flip pipe [
+			(splitString " ")
+			(flip (foldl (flip getAttr)))
+		]);
 	scoreMap = {
 		A={X=4; Y=8; Z=3;};
 		B={X=1; Y=5; Z=9;};
