@@ -1,4 +1,3 @@
-with builtins;
 with (import <nixpkgs> {}).lib;
 let
 	sum = foldl add 0;
