@@ -3,9 +3,9 @@ let
 	sum = foldl add 0;
 	# find = m: s: foldl (flip getAttr) m (splitString " " s);
 	find = flip (
-		flip pipe [
+		(flip pipe) [
 			(splitString " ")
-			(flip (foldl (flip getAttr)))
+			(pipe getAttr [flip foldl flip])
 		]);
 	scoreMap = {
 		A={X=4; Y=8; Z=3;};

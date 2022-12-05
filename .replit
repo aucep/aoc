@@ -1,4 +1,4 @@
-run = "nix-instantiate --eval --strict --show-trace day2.nix"
+run = "nix-instantiate --eval --strict --show-trace day3.nix"
 
 [nix]
 channel = "stable-21_11"
