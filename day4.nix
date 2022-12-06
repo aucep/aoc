@@ -19,14 +19,18 @@ let
 		redundant pair
 		|| any (inRange fst) snd
 		|| any (inRange snd) fst;
+
+	# there still has to be a better way... and name lol
+	deepMapPipe = list: flip pipe
+		(imap0 (i: func: (foldl 
+			(x: f: f x)
+			func (genList (const map) i))) list);
 	
-	pairs = pipe ./inputs/day4 [
-		(fileContents)
+	pairs = deepMapPipe (fileContents ./inputs/day4) [
 		(splitString "\n")
-		(map (splitString ","))
-		(map (map (splitString "-")))
-		(map (map (map toInt)))
-		# i don't know the correct pattern
+		(splitString ",")
+		(splitString "-")
+		(toInt)
 	];
 in {
 	part1 = count redundant pairs;
