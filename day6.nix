@@ -1,3 +1,4 @@
+#!/usr/bin/env -S nix-instantiate --eval --strict --show-trace
 with (import <nixpkgs> {}).lib;
 let
 	input = fileContents ./test_inputs/day6;

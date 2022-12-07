@@ -1,7 +1,6 @@
+#!/bin/env -S nix-instantiate --eval --strict --show-trace
 with (import <nixpkgs> {}).lib;
 let
-	sum = foldl add 0;
-
 	unpair = pair: {fst = head pair; snd = last pair;};
 	
 	inRange = range: n:
@@ -20,17 +19,21 @@ let
 		|| any (inRange fst) snd
 		|| any (inRange snd) fst;
 
-	# there still has to be a better way... and name lol
-	deepMapPipe = list: flip pipe
-		(imap0 (i: func: (foldl 
-			(x: f: f x)
-			func (genList (const map) i))) list);
-	
-	pairs = deepMapPipe (fileContents ./inputs/day4) [
-		(splitString "\n")
-		(splitString ",")
-		(splitString "-")
-		(toInt)
+	# thanks to 
+	splitAndMap = sep: f: s:
+    map f (splitString sep s);
+
+	# last function applied to second to last, etc.
+	compose = xs: foldr id (last xs) (init xs);
+
+	pairs = pipe ./inputs/day4 [
+		fileContents
+		(compose [
+			(splitAndMap "\n")
+			(splitAndMap ",")
+			(splitAndMap "-")
+			toInt
+		])
 	];
 in {
 	part1 = count redundant pairs;

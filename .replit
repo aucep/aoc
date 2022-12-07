@@ -1,4 +1,4 @@
-run = "nix-instantiate --eval --strict --show-trace day6.nix"
+run = "nix-shell --run './day6.nix | nixfmt' -p nixfmt"
 
 [nix]
 channel = "stable-21_11"
